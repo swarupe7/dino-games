@@ -1,12 +1,14 @@
 var score=0;
+let jumped=false;
 document.onkeydown=function(e){
-    console.log('hi');
-    console.log("value entered",e.key);
+    // console.log('hi');
+    // console.log("value entered",e.key);
     if(e.key=="w"){
         dino=document.querySelector('.dino')
         dino.classList.add('animateDino');
         setTimeout(()=>{
             dino.classList.remove("animateDino")},700);
+            jumped=true;
         }
         if(e.key=="d"){
             dino=document.querySelector('.dino')
@@ -53,8 +55,12 @@ document.onkeydown=function(e){
            obstacle.classList.remove('obstacle');
            alert(' "GAMEOVER"\n Your Score:'+ score);
         }else{
-            score+=1;
-            updateScore(score);
+            //these new changes make us help in updating score based on jumps which is previously based on time .
+            if(jumped){
+                score+=1;
+                updateScore(score);
+                jumped=false;
+            }
         }
         
 
